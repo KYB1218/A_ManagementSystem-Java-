@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">EMS</string>
+
+    //회원가입
+    <string name="textView">회원가입</string>
+    <string name="hint_name">이름</string>
+    <string name="hint_id">ID</string>
+    <string name="btn_check">확인</string>
+    <string name="hint_password">비밀번호</string>
+    <string name="hint_pwck">비밀번호 확인</string>
+    <string name="btn_join">가입</string>
+    <string name="btn_del">취소</string>
+
+
+</resources>
