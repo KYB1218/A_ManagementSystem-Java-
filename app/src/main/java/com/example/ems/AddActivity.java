@@ -1,17 +1,20 @@
 package com.example.ems;
 
-import android.app.Dialog;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.app.Dialog;
+import android.content.Intent;
+import android.os.Bundle;
+import android.text.method.CharacterPickerDialog;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -23,6 +26,8 @@ public class AddActivity extends AppCompatActivity implements RecyclerViewInterf
     private RecyclerView rv_equip;
     private FloatingActionButton fbtn_add;
     private ListAdapter listAdapter;
+
+    private String tv_state = "대여 가능";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +46,7 @@ public class AddActivity extends AppCompatActivity implements RecyclerViewInterf
         rv_equip = findViewById(R.id.rv_equip);
         fbtn_add = findViewById(R.id.fbtn_add);
         equipitems = new ArrayList<>();
-        listAdapter = new ListAdapter(equipitems, this);
+        listAdapter = new ListAdapter(equipitems, this, rv_equip);
         rv_equip.setAdapter(listAdapter);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rv_equip.getContext(),new LinearLayoutManager(this).getOrientation());
         rv_equip.addItemDecoration(dividerItemDecoration);
@@ -63,7 +68,7 @@ public class AddActivity extends AppCompatActivity implements RecyclerViewInterf
                     @Override
                     public void onClick(View v) {
                         Equipment_item item = new Equipment_item();
-                        String tv_state = "대여 가능";
+                        tv_state = "대여 가능";
                         item.setId(et_id.getText().toString());
                         item.setName(et_name.getText().toString());
                         item.setDetail(et_detail.getText().toString());
@@ -91,8 +96,12 @@ public class AddActivity extends AppCompatActivity implements RecyclerViewInterf
         intent.putExtra("Name", equipitems.get(position).getName());
         intent.putExtra("Detail", equipitems.get(position).getDetail());
 
+        // DetailActivity로 이동 시 tv_state 값을 전달합니다.
+        intent.putExtra("tv_state", tv_state);
+
         startActivity(intent);
 
-
     }
+
+
 }

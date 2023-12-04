@@ -40,4 +40,14 @@ public class Equipment_item {
     public void setState(String state) {
         this.state = state;
     }
+
+    private boolean isDeleteButtonVisible;
+
+    public boolean isDeleteButtonVisible() {
+        return isDeleteButtonVisible;
+    }
+
+    public void setDeleteButtonVisible(boolean deleteButtonVisible) {
+        isDeleteButtonVisible = deleteButtonVisible;
+    }
 }
